@@ -21,3 +21,13 @@ describe('add function', () => {
     expect(container.children.length).toBe(3);
   });
 });
+describe('removeTodo function', () => {
+  test('should remove one task from the container', () => {
+    removeTodo(0);
+    expect(container.children.length).toBe(2);
+  });
+  test('should remove another task from the container', () => {
+    removeTodo(1);
+    expect(container.children.length).toBe(1);
+  });
+});
