@@ -45,7 +45,7 @@ export const removeTodo = (index) => {
 };
 
 // EDIT A TASK
-export const edit = (index) => {
+export const editTask = (index) => {
   const todoArray = JSON.parse(localStorage.getItem('todoArray')) || [];
   const textInputs = document.querySelectorAll('.input-text');
   textInputs[index].addEventListener('change', () => {
