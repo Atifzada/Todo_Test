@@ -140,7 +140,8 @@ GitHub pages
 
 ## 👥 Authors <a name="authors"></a>
 
-👤**Atif Zada**
+👤 **Atif Zada**
+
 - GitHub: [@atifzada](https://github.com/Atifzada)
 - Twitter: [@atifzada](https://twitter.com/atifzada04)
 - LinkedIn: [@atifzada](https://www.linkedin.com/in/atif-zada-585693180/)
