@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/0xMALVEE/todo-list.git"
+    "url": "git+https://github.com/Atifzada/Todo_Test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {},
-  "homepage": "https://github.com/0xMALVEE/todo-list#readme",
+  "homepage": "https://github.com/Atifzada/Todo_Test#readme",
   "dependencies": {
     "html-webpack-plugin": "^5.5.0",
     "save": "^2.9.0"
