@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Todo List</title>
 </head>
-
 <body>
-  <div class="main">
-    <header>My today's Todo lsit</header>
-    <hr>
-    <div class="add-todo-container">
-      <input type="text" class="addInput" placeholder="Add to your list...">
-      <div class="addBtn">&#8617;</div>
+  <div class="mainContainer">
+    <div class="Todotitle">
+      <h4>My Today's Todo List</h4>
     </div>
-    <hr>
-    <div class="todoContainer">
-    </div>
-    <footer class="clrBtn">Clear completed tasks</footer>
+    <form action="#">
+      <div class="addTodo">
+        <input class="addTask" type="text" placeholder="Add to your Todo list">
+        <button class="material-icons submit" type="submit">
+          keyboard_return
+        </button>
+      </div>
+    </form>
+    <ul class="MytodoList">
+
+    </ul>
+    <button class="clearBtn">Clear all completed Tasks</button>
   </div>
-  <script defer type="module" src="index.js"></script>
 </body>
-
 </html>
-
