@@ -1,45 +1,66 @@
-// import './style.css';
-import {
-  addTodo, render, removeTodo, edit,
-} from './modules/functions.js';
+import renderTodo from './modules/renderTodo.js';
+import { updateTask, DeleteTask, editTask } from './modules/updateTask.js';
+import { completedTasks } from './modules/completedTasks.js';
 
-// ADD A NEW TASK
-const addButton = document.querySelector('.addBtn'); // clicking add button
-addButton.addEventListener('click', () => {
-  const addTask = document.querySelector('.addInput');
-  add(addTask);
-});
+const myTodoList = document.querySelector('.MytodoList');
+const inputTask = document.querySelector('.addTask');
+const Form = document.querySelector('form');
+const Clear = document.querySelector('.clearBtn');
 
-const addTask = document.querySelector('.addInput'); // typing enter key
-addTask.addEventListener('keydown', (event) => {
-  if (event.keyCode === 13) {
-    const addTask = document.querySelector('.addInput').value;
-    add(addTask);
-    render();
+let TodoList = [];
+function getTodos() {
+  if (localStorage.getItem('todos')) {
+    TodoList = JSON.parse(localStorage.getItem('todos'));
   }
-});
+}
 
-// DELETE A TASK
-const todoContainer = document.querySelector('.todoContainer');
+getTodos();
 
-todoContainer.addEventListener('click', (event) => {
-  const deleteTaskIcon = event.target.closest('.delete-task-icon');
-  if (deleteTaskIcon) {
-    const deleteTaskIcons = todoContainer.querySelectorAll('.delete-task-icon');
-    const index = Array.from(deleteTaskIcons).indexOf(deleteTaskIcon);
-    remove(index);
+function addTodoToList(todo) {
+  TodoList.push(todo);
+}
+
+function addTodo() {
+  Form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    getTodos();
+    addTodoToList({
+      discription: inputTask.value,
+      index: TodoList.length !== 0 ? TodoList[TodoList.length - 1].index + 1 : 1,
+      completed: false,
+    });
+    localStorage.setItem('todos', JSON.stringify(TodoList));
+    getTodos();
+    renderTodo(TodoList, myTodoList);
+    updateTask(TodoList, renderTodo, myTodoList);
+    inputTask.value = '';
+  });
+}
+
+export default addTodo;
+
+function ClearCompleted(TodoList) {
+  const newK = TodoList.filter((item) => !item.completed);
+  for (let i = 0; i < newK.length; i += 1) {
+    newK[i].index = i + 1;
   }
+
+  return newK;
+}
+
+Clear.addEventListener('click', () => {
+  getTodos();
+  TodoList = ClearCompleted(TodoList);
+  localStorage.setItem('todos', JSON.stringify(TodoList));
+
+  renderTodo(TodoList, myTodoList);
+  updateTask(TodoList, renderTodo, myTodoList);
 });
 
-// EDIT A TASK
-todoContainer.addEventListener('click', (event) => {
-  const textInput = event.target.closest('.input-text');
-  if (textInput) {
-    const textInputs = todoContainer.querySelectorAll('.input-text');
-    const index = Array.from(textInputs).indexOf(textInput);
-    edit(index);
-  }
-});
+addTodo();
+renderTodo(TodoList, myTodoList);
+updateTask(TodoList, renderTodo, myTodoList);
 
-// FIRST RENDER WHEN THE PAGE LOADS
-window.onload = render;
+export {
+  addTodoToList, DeleteTask, completedTasks, editTask,
+};

@@ -1,22 +1,20 @@
+/* eslint-disable */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
-
+  entry: path.resolve(__dirname, 'src/index.js'),
   output: {
-    filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    filename: 'main.js',
   },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-  ],
-
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    },
+    open: true,
+  },
   module: {
     rules: [
       {
@@ -25,5 +23,11 @@ module.exports = {
       },
     ],
   },
-
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Todo app',
+      filename: 'index.html',
+      template: 'src/index.html',
+    }),
+  ],
 };
